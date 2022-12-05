@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #board {
+            border: 1px solid black;
+            width: 200px;
+            display: grid;
+        }
+        #playerGuess {
+            margin: auto auto;
+        }
+        #buttons {
+            margin: 10px auto;
+        }
+    </style>
+    <script>
+        numGuesses = ""
+        correctGuess = ""
+        guessesLeft = 7
+        higher = " -  Code is higher"
+        lower = " - Code is lower"
+        correct = " - Correct!"
+        gameOver = " - Game over! The correct code was "
+        function initialize() {
+            playerGuessDisplay = document.getElementById("playerGuess");
+            playerLog = document.getElementById("log");
+            playerGuessesLeftDisplay = document.getElementById("clock");
+            generateNumber();
+        }
+        function generateNumber() {
+            let digit1 = Math.floor((Math.random() * 3) + 1);
+            digit1 = digit1.toString();
+            let digit2 = Math.floor((Math.random() * 3) + 1);
+            digit2 = digit2.toString();
+            let digit3 = Math.floor((Math.random() * 3) + 1);
+            digit3 = digit3.toString();
+            correctGuess = digit1 + digit2 + digit3;
+        }
+        function guessOne() {
+            numGuesses += "1";
+            display();
+        }
+        function guessTwo() {
+            numGuesses += "2";
+            display();
+        }
+        function guessThree() {
+            numGuesses += "3";
+            display();
+        }
+        function testGuess() {
+            guessesLeft--;
+            if (numGuesses === correctGuess) {
+                playerLog.innerHTML += numGuesses + correct;
+                guessesLeft = 7;
+                generateNumber();
+            } else if (parseInt(numGuesses) > parseInt(correctGuess)) {
+                if (guessesLeft < 1) {
+                    playerLog.innerHTML += numGuesses + gameOver + correctGuess;
+                    guessesLeft = 7;
+                    generateNumber();
+                } else {
+                    playerLog.innerHTML += numGuesses + lower;
+                }
+            } else {
+                if (guessesLeft < 1) {
+                    playerLog.innerHTML += numGuesses + gameOver + correctGuess;
+                    guessesLeft = 7;
+                    generateNumber();
+                } else {
+                    playerLog.innerHTML += numGuesses + higher;
+                }
+            }
+            playerGuessesLeftDisplay.innerHTML = "Guesses Left: " + guessesLeft;
+            playerLog.innerHTML += "<br>";
+        }
+        function display() {
+            playerGuessDisplay.innerHTML = numGuesses;
+            if (numGuesses.length < 3) {
+                for (let i = numGuesses.length; i < 3; i++) {
+                    playerGuessDisplay.innerHTML += "-";
+                }
+            } else {
+                testGuess();
+                numGuesses = "";
+                display();
+            }
+        }
+        function resetAll() {
+            numGuesses = "";
+            display();
+        }
+    </script>
+</head>
+<body onload="initialize()">
+    <h1>Codebreaker</h1>
+    <h2 id="clock">Remaining guesses: 7</h2>
+    <div id="board">
+        <h3 id="playerGuess">---</h3>
+        <div id="buttons">
+            <button id="one" onclick="guessOne()">1</button>
+            <button id="two" onclick="guessTwo()">2</button>
+            <button id="three" onclick="guessThree()">3</button>
+        </div>
+        <button id="resetGuess" onclick="resetAll()">reset</button>
+    </div>
+    <p id="log"></p>
+</body>
+</html>
