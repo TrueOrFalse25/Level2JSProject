@@ -6,69 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .wrapper
-        {
+        .wrapper {
+            text-align: center;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(4, 1fr);
             grid-gap: 5px;
+            border-color: solid black 5px;
         }
     </style>
     <script>
         function initialize() {
-            
+            scoreOut = document.getElementById("score");
+            scoreOut = 0;
         }
+        function setColor(color) {
+            color.style.backgroundColor = color.id;
+            match(color);
+        }
+        var firstFlip = false;
+        function match(color) {
+            firstFlip = !firstFlip;
+            if (firstFlip) {
+                firstCard = color;
+                scoreOut += 1;
+            }
+            else {
+                secondCard = color;
+                scoreOut += 1;
+                if (firstCard.id == secondCard.id)
+                {
+                    console.log("match");
+                }
+                else
+                {
+                    console.log("no match");
+                    setTimeout(() => {  firstCard.style.backgroundColor = "white"; }, 1000);
+                    setTimeout(() => {  secondCard.style.backgroundColor = "white"; }, 1000);
+                    console.log(firstCard)
+                }
+            }
+            score.innerHTML = scoreOut;
+        }        
     </script>
 </head>
 <body onload="initialize();">
+    <div class = "instructions">
+        <h1>Instructions</h1>
+        Click on two numbers at each time. 2 colors will show up in the boxes. If they match,
+        they'll remain and they'll be a successful match! If not, they'll go back to being blank 
+        and you'll have to try again. Match all the colors to win! And don't click too fast 😅.
+    </div>
+    <br>
     <div class = "wrapper">
         <div id = "red" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>1</h1>
         </div>
         <div id = "blue" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>2</h1>
         </div>
-        <div id = "gray" onclick = "setColor(this);">
-            <h1>-</h1>
-        </div>
-        <div id = "black" onclick = "setColor(this);">
-            <h1>-</h1>
+        <div id = "pink" onclick = "setColor(this);">
+            <h1>3</h1>
         </div>
         <div id = "black" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>4</h1>
+        </div>
+        <div id = "black" onclick = "setColor(this);">
+            <h1>5</h1>
         </div>
         <div id = "purple" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>6</h1>
         </div>
         <div id = "yellow" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>7</h1>
         </div>
         <div id = "purple" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>8</h1>
         </div>
-        <div id = "gray" onclick = "setColor(this);">
-            <h1>-</h1>
+        <div id = "pink" onclick = "setColor(this);">
+            <h1>9</h1>
         </div>
         <div id = "brown" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>10</h1>
         </div>
         <div id = "green" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>11</h1>
         </div>
         <div id = "red" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>12</h1>
         </div>
         <div id = "blue" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>13</h1>
         </div>
         <div id = "green" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>14</h1>
         </div>
         <div id = "brown" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>15</h1>
         </div>
         <div id = "yellow" onclick = "setColor(this);">
-            <h1>-</h1>
+            <h1>16</h1>
         </div>
     </div>
 </body>
