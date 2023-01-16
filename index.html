@@ -53,11 +53,17 @@
 <body onload="initialize();">
     <div class = "instructions">
         <h1>Instructions</h1>
-        Click on two numbers at each time. 2 colors will show up in the boxes. If they match,
-        they'll remain and they'll be a successful match! If not, they'll go back to being blank 
-        and you'll have to try again. Match all the colors to win! And don't click too fast 😅.
+        <p>
+            Click on two numbers at each time. 2 colors will show up in the boxes. If they match,
+            they'll remain and they'll be a successful match! If not, wait one second so they'll go back to being blank 
+            and you'll get to memorize where the colors were, 
+            but you'll have to try again. Your score goes up every time you click a number.
+            Match all the colors so the game finishes. The lowest score wins!
+        </p>
     </div>
-    <br>
+    <h1>Score: <span id = "score">0</span></h1>
+    <button onclick = "window.location.reload();">Reset</button>
+    <br><br>
     <div class = "wrapper">
         <div id = "red" onclick = "setColor(this);">
             <h1>1</h1>
@@ -68,10 +74,10 @@
         <div id = "pink" onclick = "setColor(this);">
             <h1>3</h1>
         </div>
-        <div id = "black" onclick = "setColor(this);">
+        <div id = "cyan" onclick = "setColor(this);">
             <h1>4</h1>
         </div>
-        <div id = "black" onclick = "setColor(this);">
+        <div id = "cyan" onclick = "setColor(this);">
             <h1>5</h1>
         </div>
         <div id = "purple" onclick = "setColor(this);">
